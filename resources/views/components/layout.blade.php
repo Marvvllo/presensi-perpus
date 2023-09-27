@@ -37,9 +37,9 @@
 
     <x-sidebar />
 
-    <main class="w-full">
+    <div class="w-full">
       {{ $slot }}
-    </main>
+    </div>
   </div>
 </body>
 
