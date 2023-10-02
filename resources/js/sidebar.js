@@ -14,5 +14,4 @@ sidebarButton.addEventListener('click', () => {
   navLinks.forEach((link) => {
     link.classList.toggle('hidden')
   })
-  isNavOpen = !isNavOpen
 })

@@ -12,7 +12,7 @@
   </div>
 
   <!-- List -->
-  <ul class="flex flex-col gap-4 text-white">
+  <ul class="flex flex-col gap-4 text-white font-medium">
     <!-- Beranda -->
     <li class="flex flex-row gap-2 items-center">
       <svg class="w-8 h-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -20,16 +20,16 @@
         <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
       </svg>
 
-      <a class="nav-link transition-all font-semibold text-lg" href="#">Beranda</a>
+      <a class="nav-link transition-all text-lg" href="#">Beranda</a>
     </li>
 
-    <!-- Absensi -->
+    <!-- Presensi -->
     <li class="flex flex-row gap-2 items-center">
       <svg class="w-8 h-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
         <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
       </svg>
 
-      <a class="nav-link transition-all font-semibold text-lg" href="#">Absensi</a>
+      <a class="nav-link transition-all text-lg" href="#">Presensi</a>
     </li>
 
     <!-- Pengawas -->
@@ -38,7 +38,7 @@
         <path fill-rule="evenodd" d="M4.5 3.75a3 3 0 00-3 3v10.5a3 3 0 003 3h15a3 3 0 003-3V6.75a3 3 0 00-3-3h-15zm4.125 3a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zm-3.873 8.703a4.126 4.126 0 017.746 0 .75.75 0 01-.351.92 7.47 7.47 0 01-3.522.877 7.47 7.47 0 01-3.522-.877.75.75 0 01-.351-.92zM15 8.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15zM14.25 12a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H15a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15z" clip-rule="evenodd" />
       </svg>
 
-      <a class="nav-link transition-all font-semibold text-lg" href="#">Pengawas</a>
+      <a class="nav-link transition-all text-lg" href="#">Pengawas</a>
     </li>
 
     <!-- Admin -->
@@ -47,7 +47,7 @@
         <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
       </svg>
 
-      <a class="transition-all nav-link font-semibold text-lg" href="#">Admin</a>
+      <a class="transition-all nav-link text-lg" href="#">Admin</a>
     </li>
   </ul>
 </aside>
