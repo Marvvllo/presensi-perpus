@@ -1,4 +1,14 @@
 <x-layout>
+
+  @if(session()->has('message'))
+  <div id="success-message" class="absolute  right-8 bottom-8 rounded-lg flex flex-row items-center gap-4 outline outline-1 outline-green-500 bg-white p-4">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-auto text-green-500">
+      <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+    </svg>
+    {{ session()->get('message') }}
+  </div>
+  @endif
+
   <main class="flex flex-col gap-2 py-2">
     <section class="flex flex-row justify-between items-center px-4">
       <h1 class="font-medium text-3xl">Beranda</h1>
@@ -88,3 +98,12 @@
     </section>
   </main>
 </x-layout>
+
+<script>
+  setTimeout(function() {
+    var successMessage = document.getElementById("success-message");
+    if (successMessage) {
+      successMessage.style.display = "none";
+    }
+  }, 2500); // Pesan akan hilang setelah 5 detik (5000 milidetik)
+</script>
