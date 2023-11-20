@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PresensiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,5 @@ Route::controller(AuthController::class)->prefix('admin')->group(function () {
     Route::post('/login', 'authenticate')->name('authenticate');
     Route::get('/logout', 'logout')->name('logout');
 });
+
+Route::resource('presensi', PresensiController::class);
