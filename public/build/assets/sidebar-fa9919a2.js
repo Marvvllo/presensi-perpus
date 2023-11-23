@@ -1,0 +1,1 @@
+const t=document.querySelector("#navImage"),n=document.querySelectorAll(".nav-link"),s=document.querySelector("#sidebarButton");t.classList.toggle("hidden");n.forEach(e=>{e.classList.toggle("hidden")});s.addEventListener("click",()=>{t.classList.toggle("hidden"),n.forEach(e=>{e.classList.toggle("hidden")})});
