@@ -35,7 +35,7 @@ class PresensiController extends Controller
             'tanggal' => $request->tanggal,
         ]);
 
-        redirect()->route('presensi.index');
+        return redirect()->route('presensi.index');
     }
 
     /**
@@ -51,7 +51,8 @@ class PresensiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $presensi = Presensi::findOrFail($id);
+        return view('presensi.edit', compact('presensi'));
     }
 
     /**
@@ -59,7 +60,14 @@ class PresensiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $presensi = Presensi::findOrFail($id);
+        $presensi->update([
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'tanggal' => $request->tanggal,
+        ]);
+
+        return redirect()->route('presensi.index');
     }
 
     /**
@@ -67,6 +75,9 @@ class PresensiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $presensi = Presensi::findOrFail($id);
+        $presensi->delete();
+
+        return redirect()->route('presensi.index');
     }
 }

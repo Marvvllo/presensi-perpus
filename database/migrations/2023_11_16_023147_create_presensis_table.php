@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->char('nis', 9);
             $table->string('nama');
-            $table->datetime('tanggal');
+            $table->date('tanggal');
         });
     }
 

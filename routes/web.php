@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PresensiController;
+use App\Models\Admin;
+use App\Models\Presensi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +23,9 @@ Route::get('/', function () {
 
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard.index');
+        $jumlahPresensi = Presensi::count();
+        $jumlahAdmin = Admin::count();
+        return view('dashboard.index', compact('jumlahPresensi', 'jumlahAdmin'));
     })->name('dashboard');
 });
 
