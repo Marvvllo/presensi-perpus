@@ -12,7 +12,6 @@ class Presensi extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id',
         'nis',
         'nama',
         'tanggal',
