@@ -26,10 +26,12 @@ class PresensiController extends Controller
         Presensi::create([
             'nis' => $request->nis,
             'nama' => $request->nama,
-            'tanggal' => $request->tanggal,
+            'tanggal' => date('Y-m-d'),
         ]);
 
-        return redirect()->route('presensi.index');
+        return response()->json([
+            'message' => 'Data ditambahkan'
+        ], 200);
     }
 
     /**
