@@ -13,15 +13,9 @@ class PresensiController extends Controller
     public function index()
     {
         $presensi = Presensi::all();
-        return view('presensi.index', compact('presensi'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('presensi.create');
+        return response()->json([
+            'presensi' => $presensi,
+        ], 200);
     }
 
     /**

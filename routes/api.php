@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PresensiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,16 +21,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/tokens/create', function (Request $request) {
-    $credentials = $request->validate([
-        'email' => ['required', 'email'],
-        'password' => ['required'],
-    ]);
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
-    }
-    $token = Auth::user()->createToken($request->token_name);
-
-    return ['token' => $token->plainTextToken];
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/login', 'login')->name('login');
 });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [AuthController::class, 'logout']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Route::post('/logout', [AuthController::class, 'logout']);
+    Route::apiResource('presensi', PresensiController::class);
+});
+// Route::apiResource('presensi', PresensiController::class);
