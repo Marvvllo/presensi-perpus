@@ -24,10 +24,6 @@ class AuthController extends Controller
         $token = $request->user()->createToken('auth_token')->plainTextToken;
 
         $user = Admin::find(Auth::id());
-        // $user->update([
-        //     'api_token' => $token->plainTextToken,
-        // ]);
-        // $user->save();
 
         return response()->json([
             'message' => 'Login Success',

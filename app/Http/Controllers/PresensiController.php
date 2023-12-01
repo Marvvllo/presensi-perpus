@@ -26,10 +26,12 @@ class PresensiController extends Controller
         Presensi::create([
             'nis' => $request->nis,
             'nama' => $request->nama,
-            'tanggal' => $request->tanggal,
+            'tanggal' => date('Y-m-d'),
         ]);
 
-        return redirect()->route('presensi.index');
+        return response()->json([
+            'message' => 'Data ditambahkan'
+        ], 200);
     }
 
     /**
@@ -41,27 +43,22 @@ class PresensiController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $presensi = Presensi::findOrFail($id);
-        return view('presensi.edit', compact('presensi'));
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
         $presensi = Presensi::findOrFail($id);
         $presensi->update([
-            'nis' => $request->nis,
-            'nama' => $request->nama,
-            'tanggal' => $request->tanggal,
+            'nis' => $request->nis ?? $presensi->nis,
+            'nama' => $request->nama ?? $presensi->nama,
+            'tanggal' => $request->tanggal ?? $presensi->tanggal,
         ]);
+        $presensi->save();
 
-        return redirect()->route('presensi.index');
+        return response()->json([
+            'message' => 'Data diperbarui',
+            'presensi' => $presensi,
+        ], 200);
     }
 
     /**
@@ -72,6 +69,8 @@ class PresensiController extends Controller
         $presensi = Presensi::findOrFail($id);
         $presensi->delete();
 
-        return redirect()->route('presensi.index');
+        return response()->json([
+            'message' => 'Data dihapus',
+        ], 200);
     }
 }
