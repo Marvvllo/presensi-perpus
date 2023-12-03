@@ -26,7 +26,7 @@ class PresensiController extends Controller
         Presensi::create([
             'nis' => $request->nis,
             'nama' => $request->nama,
-            'tanggal' => date('Y-m-d'),
+            'tanggal' => $request->tanggal,
         ]);
 
         return response()->json([
@@ -39,7 +39,10 @@ class PresensiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $presensi = Presensi::findOrFail($id);
+        return response()->json([
+            'presensi' => $presensi,
+        ], 200);
     }
 
     /**
@@ -49,9 +52,9 @@ class PresensiController extends Controller
     {
         $presensi = Presensi::findOrFail($id);
         $presensi->update([
-            'nis' => $request->nis ?? $presensi->nis,
-            'nama' => $request->nama ?? $presensi->nama,
-            'tanggal' => $request->tanggal ?? $presensi->tanggal,
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'tanggal' => $request->tanggal,
         ]);
         $presensi->save();
 
