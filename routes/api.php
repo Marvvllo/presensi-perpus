@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PresensiController;
+use App\Models\Admin;
+use App\Models\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,11 +29,15 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('logout', [AuthController::class, 'logout']);
-});
-
-Route::middleware('auth:sanctum')->group(function () {
-    // Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('presensi', PresensiController::class);
+    Route::get('/count', function () {
+        $presensiCount = Presensi::count();
+        $adminCount = Admin::count();
+
+        return response()->json([
+            'presensi_count' => $presensiCount,
+            'admin_count' => $adminCount,
+        ], 200);
+    });
 });
-// Route::apiResource('presensi', PresensiController::class);
