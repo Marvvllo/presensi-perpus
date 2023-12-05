@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PresensiController;
 use App\Models\Admin;
 use App\Models\Presensi;
+use App\Http\Controllers\PengawasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,18 +22,12 @@ Route::get('/', function () {
     return redirect(route('login'));
 });
 
-// Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
-//     Route::get('/dashboard', function () {
-//         $jumlahPresensi = Presensi::count();
-//         $jumlahAdmin = Admin::count();
-//         return view('dashboard.index', compact('jumlahPresensi', 'jumlahAdmin'));
-//     })->name('dashboard');
-// });
+Route::prefix('auth')->middleware('auth:sanctum')->group(function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::get('logout', [AuthController::class, 'logout']);
+    Route::get('user', [AuthController::class, 'user']);
+});
 
-// Route::controller(AuthController::class)->prefix('admin')->group(function () {
-//     Route::get('/login', 'login')->name('login');
-//     Route::post('/login', 'authenticate')->name('authenticate');
-//     Route::get('/logout', 'logout')->name('logout');
-// });
+Route::resource('pengawas', PengawasController::class);
 
-// Route::resource('presensi', PresensiController::class);
