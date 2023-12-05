@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PengawasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(AuthController::class)->middleware('auth:sanctum')->group(['prefix' => 'auth'], function () {
-    Route::post('login', 'login');
-    Route::post('register', 'register');
-      Route::get('logout', 'logout');
-      Route::get('user', 'user');
-
+Route::prefix('auth')->middleware('auth:sanctum')->group(function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::get('logout', [AuthController::class, 'logout']);
+    Route::get('user', [AuthController::class, 'user']);
 });
+
+Route::resource('pengawas', PengawasController::class);
