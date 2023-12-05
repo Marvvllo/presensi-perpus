@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\resource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,60 +10,39 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function login(Request $request)
     {
-        //
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+
+        $token = $request->user()->createToken('auth_token')->plainTextToken;
+
+        $user = Admin::find(Auth::id());
+
+        return response()->json([
+            'message' => 'Login Success',
+            'user' => $user,
+            'access_token' => $token,
+            'token_type' => 'Bearer'
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    function logout(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(resource $resource)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(resource $resource)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, resource $resource)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(resource $resource)
-    {
-        //
+        // $user = Admin::find(Auth::id());
+        // $user->currentAccessToken->delete();
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'message' => 'logout success', 'active_tokens' => Auth::user()->tokens,
+        ]);
     }
 
     public function register(Request $request)

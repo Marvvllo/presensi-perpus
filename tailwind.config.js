@@ -12,6 +12,11 @@ export default {
         white: '#FFFFFF',
         black: '#1D1D1B',
         gray: '#706F6F',
+        'light-gray': '#EDEDED',
+      },
+      fontFamily: {
+        sans: ["GothamRounded", 'sans-serif'],
+        secondary: "Gotham",
       },
     },
   },

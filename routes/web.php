@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PresensiController;
+use App\Models\Admin;
+use App\Models\Presensi;
 use App\Http\Controllers\PengawasController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('login'));
 });
 
 Route::prefix('auth')->middleware('auth:sanctum')->group(function () {
@@ -26,3 +30,4 @@ Route::prefix('auth')->middleware('auth:sanctum')->group(function () {
 });
 
 Route::resource('pengawas', PengawasController::class);
+
